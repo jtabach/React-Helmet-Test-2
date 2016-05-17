@@ -6,6 +6,7 @@ import Helmet from 'react-helmet';
 
 import routes from './routes';
 import About from './components/About';
+import Content from './components/Content';
 
 /* create express server */
 let app = express();
@@ -29,9 +30,14 @@ app.get('*', function(req, res) {
     //     routes: routes,
     // });
 
-    let renderedBody = React.renderToString(<About />);
-    let head = Helmet.rewind();
     console.log(req.url);
+    if (req.url === '/about') {
+      let renderedBody = React.renderToString(<About />);
+    } else {
+      let renderedBody = React.renderToString(<Content />);
+    }
+
+    let head = Helmet.rewind();
 
     let html = `
         <!doctype html>
