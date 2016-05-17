@@ -1,7 +1,7 @@
 import express from 'express';
 
 import React from 'react';
-import { Router, Route } from 'react-router';
+import { Router, Route, RoutingContext, match } from 'react-router';
 import Helmet from 'react-helmet';
 
 import routes from './routes';
@@ -11,6 +11,8 @@ import About from './components/About';
 let app = express();
 /* static files served from "public" through url /static/ */
 app.use('/static', express.static('public'));
+
+app.set('view engine', 'ejs');
 
 /* a single request handler receives every server request
    and routes through react-router */
@@ -49,7 +51,7 @@ app.get('*', function(req, res) {
     `;
 
     res.write(html);
-    res.end();
+    // res.end();
 
     // Router.run(function(Root, state) {
     //     /* render `Root` (the complete document) to string
