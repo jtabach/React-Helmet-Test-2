@@ -1,14 +1,14 @@
 /* global window, document */
 
 import React from 'react';
-import Router from 'react-router';
-
-window.React = React;
+import ReactDOM from 'react-dom';
+import { Router } from 'react-router';
 
 let routes = require('./routes');
 
-Router.run(routes, Router.HistoryLocation, function(Root, state) {
-    React.render(<Root />, document.getElementById('app'));
-
-    console.log('Rendered app on client');
-});
+ReactDOM.render(
+  <Router>
+    <routes />
+  </Router>,
+  document.getElementById('app')
+);

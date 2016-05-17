@@ -1,19 +1,23 @@
 import React from 'react';
-import Router from 'react-router';
+import { Link } from 'react-router';
+import Helmet from 'react-helmet';
 
 let App = React.createClass({
     render: function() {
         return (
             <div>
-                <nav>
-                    <ul>
-                        <li><Router.Link to="home">Home</Router.Link></li>
-                        <li><Router.Link to="news">News</Router.Link></li>
-                        <li><Router.Link to="about">About</Router.Link></li>
-                    </ul>
-                </nav>
-
-                <Router.RouteHandler />
+              <Helmet
+                  title="App"
+                  meta={[
+                      {property: 'og:title', content: 'App and Nav'},
+                  ]} />
+                  <ul>
+                      <li><Link to="/">Home</Link></li>
+                      <li><Link to="news">News</Link></li>
+                      <li><Link to="about">About</Link></li>
+                  </ul>
+                  {this.props.children}
+                  <h1>Other text</h1>
             </div>
         );
     }

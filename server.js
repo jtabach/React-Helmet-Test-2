@@ -1,12 +1,14 @@
 import express from 'express';
 
 import React from 'react';
-import { Router, Route, RoutingContext, match } from 'react-router';
+import { Router, Route, RouterContext, match } from 'react-router';
+import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
 
 import routes from './routes';
 import About from './components/About';
 import Content from './components/Content';
+import App from './components/App';
 
 /* create express server */
 let app = express();
@@ -20,46 +22,51 @@ app.set('view engine', 'ejs');
 app.get('*', function(req, res) {
     /* create a router and give it our routes
        and the requested path */
-      //  console.log("Router", Router);
-      //  console.log("Route", Route);
-      console.log(routes);
-      // console.log(router);
-      //  console.log(<Route>{routes}</Route>);
-    // let router = Router.run({
-    //     location: req.url,
-    //     routes: routes,
-    // });
+
 
     console.log(req.url);
-    let renderedBody;
-    if (req.url === '/about') {
-      renderedBody = React.renderToString(<About />);
-    } else {
-      renderedBody = React.renderToString(<Content />);
-    }
-    let head = Helmet.rewind();
+    var renderedBody;
 
-    let html = `
-        <!doctype html>
-        <html>
-            <head>
-                <meta charset="utf-8" />
-                <meta name="google-site-verification" content="pTJuyxX8VF2krKKPzKp1SnN5fZQ49R9-DJtA1oxQntQ" />
-                <title>${head.title}</title>
-                ${head.meta}
-                ${head.link}
-            </head>
-            <body>
-                <div id="app">${renderedBody}</div>
+    match({routes, location: req.url}, (error, redirection, renderProps) => {
+      // console.log('routes', routes);
+      // console.log('RouterContext: ', RouterContext);
+      // console.log('renderProps: ', {...renderProps});
+      // console.log('error: ', error);
+      // console.log('redirection', redirection);
+      renderedBody = renderToString(<RouterContext {...renderProps}/>);
+      console.log(renderedBody);
+      let head = Helmet.rewind();
+      console.log(head);
+
+      let html = `
+          <!doctype html>
+          <html>
+              <head>
+                  <meta charset="utf-8" />
+                  <meta name="google-site-verification" content="pTJuyxX8VF2krKKPzKp1SnN5fZQ49R9-DJtA1oxQntQ" />
+                  <title>${head.title}</title>
+                  ${head.meta}
+                  ${head.link}
+              </head>
+              <body>
+                  <div id="app">${renderedBody}</div>
+
+                  <script src="/static/client.js"></script>
+              </body>
+          </html>
+      `;
+      res.write(html);
+      res.end();
+    });
 
 
-            </body>
-        </html>
-    `;
 
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write(html);
-    res.end();
+    // if (req.url === '/') {
+    //   renderedBody = renderToString(<App />);
+    // } else {
+    //   renderedBody = renderToString(<Content />);
+    // }
+
 
     // Router.run(function(Root, state) {
     //     /* render `Root` (the complete document) to string
