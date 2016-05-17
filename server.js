@@ -45,7 +45,7 @@ app.get('*', function(req, res) {
             <body>
                 <div id="app">${renderedBody}</div>
 
-                <script src="/static/client.js"></script>
+                
             </body>
         </html>
     `;
