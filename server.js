@@ -51,7 +51,7 @@ app.get('*', function(req, res) {
     `;
 
     res.write(html);
-    // res.end();
+    res.end();
 
     // Router.run(function(Root, state) {
     //     /* render `Root` (the complete document) to string
