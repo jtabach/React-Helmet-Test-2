@@ -31,12 +31,12 @@ app.get('*', function(req, res) {
     // });
 
     console.log(req.url);
+    let renderedBody;
     if (req.url === '/about') {
-      let renderedBody = React.renderToString(<About />);
+      renderedBody = React.renderToString(<About />);
     } else {
-      let renderedBody = React.renderToString(<Content />);
+      renderedBody = React.renderToString(<Content />);
     }
-
     let head = Helmet.rewind();
 
     let html = `

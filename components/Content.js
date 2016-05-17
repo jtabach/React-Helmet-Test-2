@@ -13,8 +13,6 @@ let Content = React.createClass({
                     meta={[
                         {property: 'og:title', content: 'Latest Updates'},
                     ]} />
-
-                <Router.RouteHandler />
             </div>
         );
     }
