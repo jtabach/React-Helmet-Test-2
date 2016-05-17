@@ -38,6 +38,7 @@ app.get('*', function(req, res) {
         <html>
             <head>
                 <meta charset="utf-8" />
+                <meta name="google-site-verification" content="pTJuyxX8VF2krKKPzKp1SnN5fZQ49R9-DJtA1oxQntQ" />
                 <title>${head.title}</title>
                 ${head.meta}
                 ${head.link}
@@ -45,7 +46,7 @@ app.get('*', function(req, res) {
             <body>
                 <div id="app">${renderedBody}</div>
 
-                
+
             </body>
         </html>
     `;
