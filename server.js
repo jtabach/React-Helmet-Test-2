@@ -20,7 +20,6 @@ app.get('*', function(req, res) {
       //  console.log("Router", Router);
       //  console.log("Route", Route);
       console.log(routes);
-      console.log(req.url);
       // console.log(router);
       //  console.log(<Route>{routes}</Route>);
     // let router = Router.run({
@@ -30,6 +29,7 @@ app.get('*', function(req, res) {
 
     let renderedBody = React.renderToString(<About />);
     let head = Helmet.rewind();
+    console.log(req.url);
 
     let html = `
         <!doctype html>
@@ -90,4 +90,4 @@ app.get('*', function(req, res) {
     // });
 });
 
-app.listen(8080, () => console.log('Listening on http://localhost:8080'));
+app.listen(process.env.PORT || 8080, () => console.log('Listening on http://localhost:8080'));
