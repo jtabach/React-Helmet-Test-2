@@ -28,7 +28,7 @@ let App = React.createClass({
                   <h1>Other text</h1>
                   <input
                     value={this.state.text}
-                    onKeyUp={this.handleEvent.bind(this)}
+                    onKeyUp={this.handleEvent}
                     type="text"/>
                     <h1>Something else!!! {this.state.text}</h1>
             </div>
