@@ -19,6 +19,7 @@ app.set('view engine', 'ejs');
 
 /* a single request handler receives every server request
    and routes through react-router */
+app.get('/favicon.ico', (req, res) => res.send(''));
 app.get('/*', function(req, res) {
     /* create a router and give it our routes
        and the requested path */
