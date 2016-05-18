@@ -8,7 +8,7 @@ let Home = React.createClass({
                 <Helmet
                     title="Home"
                     meta={[
-                        {property: 'og:title', content: 'Home'},{name: 'google-site-verification', content: 'pTJuyxX8VF2krKKPzKp1SnN5fZQ49R9-DJtA1oxQntQ'}
+                        {property: 'og:title', content: 'Home'},
                     ]} />
                 <h1>Home</h1>
             </div>
