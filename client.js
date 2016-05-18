@@ -6,7 +6,11 @@ import { Router, browserHistory } from 'react-router';
 
 let routes = require('./routes');
 
-ReactDOM.render(
-  <Router history={browserHistory} routes={routes} /> ,
-  document.getElementById('app')
-);
+// if (typeof window !== 'undefined') {
+  // window.onload = function() {
+    ReactDOM.render(
+      <Router history={browserHistory} routes={routes} /> ,
+      document.getElementById('app')
+    );
+  // };
+// }

@@ -19,21 +19,19 @@ app.set('view engine', 'ejs');
 
 /* a single request handler receives every server request
    and routes through react-router */
-app.get('*', function(req, res) {
+app.get('/*', function(req, res) {
     /* create a router and give it our routes
        and the requested path */
     var renderedBody;
+    var html;
 
     match({routes, location: req.url}, (error, redirection, renderProps) => {
-      // console.log('routes', routes);
-      // console.log('RouterContext: ', RouterContext);
-      // console.log('renderProps: ', {...renderProps});
-      // console.log('error: ', error);
-      // console.log('redirection', redirection);
+
       renderedBody = renderToString(<RouterContext {...renderProps}/>);
+      // renderedBody = renderToString(routes);
       let head = Helmet.rewind();
 
-      let html = `
+      html = `
           <!doctype html>
           <html>
               <head>
@@ -50,9 +48,9 @@ app.get('*', function(req, res) {
               </body>
           </html>
       `;
-      res.write(html);
-      res.end();
     });
+    res.write(html);
+    res.end();
 });
 
 app.listen(process.env.PORT || 8080, () => console.log('Listening on http://localhost:8080'));
