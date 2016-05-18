@@ -11,7 +11,7 @@ let Content = React.createClass({
                 <Helmet
                     title="Latest Updates"
                     meta={[
-                        {property: 'og:title', content: 'Latest Updates'},
+                        {property: 'og:title', content: 'Home', name: 'google-site-verification', content: 'pTJuyxX8VF2krKKPzKp1SnN5fZQ49R9-DJtA1oxQntQ'}
                     ]} />
             </div>
         );
