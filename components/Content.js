@@ -12,6 +12,7 @@ let Content = React.createClass({
                     title="Latest Updates"
                     meta={[
                         {property: 'og:title', content: 'Content'},
+                        {name: 'google-site-verification', content: 'pTJuyxX8VF2krKKPzKp1SnN5fZQ49R9-DJtA1oxQntQ'}
                     ]} />
             </div>
         );
