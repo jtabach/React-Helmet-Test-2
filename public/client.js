@@ -25303,7 +25303,7 @@
 	      ),
 	      _react2['default'].createElement('input', {
 	        value: this.state.text,
-	        onKeyUp: this.handleEvent.bind(this),
+	        onKeyUp: this.handleEvent,
 	        type: 'text' }),
 	      _react2['default'].createElement(
 	        'h1',
